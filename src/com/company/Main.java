@@ -38,6 +38,7 @@ public class Main {
 
         System.out.print("\nВведите количество столбцов: ");
         matrix.countOfRows = in.nextInt();
+        matrix.matrix = matrix.getEmptyMatrix();
 
         Matrix.fillMatrix(matrix.matrix);
         matrix.findBinaryMatrix(matrix);
@@ -56,7 +57,6 @@ public class Main {
         System.out.print("Введите число, кратность которого нужно проверить: ");
         int number = in.nextInt();
         int countOfMultiples = 0;
-
         for (int digit : numbers) {
             if (digit % number == 0) {
                 countOfMultiples += 1;
@@ -69,58 +69,27 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Введите количество строк: ");
-        int countOfStrings = in.nextInt();
+        Matrix matrix = new Matrix(in.nextInt());
 
         System.out.print("\nВведите количество столбцов: ");
-        int countOfRows = in.nextInt();
+        matrix.countOfRows = in.nextInt();
 
-        int[][] matrix = new int[countOfStrings][countOfRows];
-        Matrix.fillMatrix(matrix);
+        matrix.matrix = matrix.getEmptyMatrix();
 
-        if (isCorrectDiagonal(matrix)) {
-            System.out.println("Элементы главной диагонали упорядочены");
-        } else {
-            System.out.println("Элементы главной диагонали не упорядочены");
-        }
-    }
-    public static boolean isCorrectDiagonal(int[][] matrix) {
-        for (int i = 0; i < matrix.length - 1; i++) {
-            if (matrix[i][i] > matrix[i + 1][i + 1]) {
-                return false;
-            }
-        }
-        return true;
+        Matrix.fillMatrix(matrix.matrix);
+        matrix.Correct(matrix);
     }
 
     public static void doTaskFour() {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Введите размерность массива: ");
-        int size = in.nextInt();
-        int[][] matrix = new int[size][size];
-        Matrix.fillMatrix(matrix);
-        int matrix_maxY = matrix.length - 1;
-        int matrix_minY = 0;
-        int matrix_maxX = matrix.length - 1;
-        int matrix_minX = 0;
+        Matrix matrix =(in.nextInt());
 
-        for (int l = 0; l <= (matrix.length/2) + 1; l++) {
-            for (int i = matrix_maxX; i >= matrix_minX; i-- ) {
-                System.out.println(matrix[matrix_maxY][i]);
-            }
-            for (int i = matrix_maxY; i >= matrix_minY+1; i-- ) {
-                System.out.println(matrix[i - 1][matrix_minY]);
-            }
-            for (int i = matrix_minX + 1; i <= matrix_maxX; i++ ) {
-                System.out.println(matrix[matrix_minX][i]);
-            }
-            for (int i = matrix_minY+1; i < matrix_maxY; i++ ) {
-                System.out.println(matrix[i][matrix_maxY]);
-            }
-            matrix_maxY--;
-            matrix_maxX--;
-            matrix_minX++;
-            matrix_minY++;
-        }
+        matrix.size = in.nextInt();
+
+        matrix.matrix = matrix.getQuadMatrix();
+        Matrix.fillMatrix(matrix.matrix);
+        matrix.Dimension(matrix);
     }
 }
