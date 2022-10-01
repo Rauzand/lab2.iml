@@ -54,6 +54,12 @@ public class Main {
 
         Sentence.parseSentence(sentence);
         Sentence.calculateCountOfMultiples(sentence);
+
+        Sentence clone = new Sentence(sentence);
+
+        System.out.println();
+        Sentence.print(clone);
+        Sentence.print(sentence);
     }
 
     public static void doTaskThree() {

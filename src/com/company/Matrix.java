@@ -8,7 +8,9 @@ public class Matrix {
     private int[][] matrix;
 
     public Matrix() {
-
+        this.countOfStrings = 5;
+        this.countOfRows = 5;
+        this.matrix = new int[countOfStrings][countOfRows];
     }
 
     public Matrix(int countOfStrings){
