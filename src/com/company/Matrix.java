@@ -26,14 +26,12 @@ public class Matrix {
         this.matrix = new int[countOfStrings][countOfStrings];
     }
 
-    public static void fillMatrix(Matrix emptyMatrix) {
+    public void fillMatrix() {
         Scanner in = new Scanner(System.in);
-
-        for (int i = 0; i < emptyMatrix.matrix.length; i++) {
-            for (int j = 0; j < emptyMatrix.matrix[i].length; j++)
-            {
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
                 System.out.print("Введите [" + (i + 1) + "][" + (j + 1) + "] = ");
-                emptyMatrix.matrix[i][j] = in.nextInt();
+                this.matrix[i][j] = in.nextInt();
             }
         }
     }
@@ -96,13 +94,12 @@ public class Matrix {
         }
     }
 
-    public static void isCorrectDiagonal(Matrix matrix) {
-        for (int i = 0; i < matrix.matrix.length - 1; i++) {
-            if (matrix.matrix[i][i] > matrix.matrix[i + 1][i + 1]) {
-                System.out.println("Элементы главной диагонали не упорядочены");
-                return;
+    public boolean isCorrectDiagonal() {
+        for (int i = 0; i < this.matrix.length - 1; i++) {
+            if (this.matrix[i][i] > this.matrix[i + 1][i + 1]) {
+                return false;
             }
         }
-        System.out.println("Элементы главной диагонали упорядочены");
+        return true;
     }
 }

@@ -39,7 +39,7 @@ public class Main {
         System.out.print("\nВведите количество столбцов: ");
         matrix.getCountOfRows(in.nextInt());
 
-        Matrix.fillMatrix(matrix);
+        matrix.fillMatrix();
         matrix.findBinaryMatrix(matrix);
     }
 
@@ -50,14 +50,13 @@ public class Main {
         Sentence sentence = new Sentence(in.nextLine());
 
         System.out.print("Введите число, кратность которого нужно проверить: ");
-        sentence.getNumber(in.nextInt());
+        sentence.setNumber(in.nextInt());
 
-        Sentence.parseSentence(sentence);
-        Sentence.calculateCountOfMultiples(sentence);
+        System.out.println("Количество чисел, кратных " + sentence.getNumber() + " = " + sentence.calculateCountOfMultiples());
 
         Sentence clone = new Sentence(sentence);
-
         System.out.println();
+        clone.changeObject();
         Sentence.print(clone);
         Sentence.print(sentence);
     }
@@ -70,9 +69,13 @@ public class Main {
 
         System.out.print("\nВведите количество столбцов: ");
         matrix.getCountOfRows(in.nextInt());
-        Matrix.fillMatrix(matrix);
+        matrix.fillMatrix();
 
-        Matrix.isCorrectDiagonal(matrix);
+        if (matrix.isCorrectDiagonal()) {
+            System.out.println("Элементы главной диагонали упорядочены");
+        } else {
+            System.out.println("Элементы главной диагонали не упорядочены");
+        }
     }
 
     public static void doTaskFour() {
@@ -82,7 +85,7 @@ public class Main {
         System.out.print("Введите размерность массива: ");
         matrix.getSize(in.nextInt());
 
-        Matrix.fillMatrix(matrix);
+        matrix.fillMatrix();
         Matrix.Dimension(matrix);
     }
 }
